@@ -11,19 +11,20 @@
 	import flash.ui.*;
 
 	public class Main extends MovieClip {
-
+		
+		var mapW: int = 1000;
+		var mapH: int = 1000;
 		var numParticles: int = 300;
-		var heroInfluence: Number = 200;
-		var blockSize: int = 50;
-		var runSpeed: Number = 5;
+		var heroInfluence: Number = 100;
+		var blockSize: int = stage.stageWidth / 10;
+		var runSpeed: Number = 6;
 		var manRad: Number = 15;
 		var dir: String = "S";
 		var prevState: String = null;
 
 
 
-		var mapW: int = 1000;
-		var mapH: int = 1000;
+		
 		var Model: Object = {};
 
 		var numRows: int = mapH / blockSize;
@@ -235,7 +236,7 @@
 			var end: int = 2;
 
 
-			var spread: int = blockSize / 7;
+			var spread: int = blockSize / 4;
 			if (fromHero) {
 				start = -spread;
 				end = spread;
@@ -244,14 +245,11 @@
 			for (row = start; row < end; row++) {
 				for (col = start; col < end; col++) {
 
-
-
 					var key: String = (o.row + row) + "_" + (o.col + col);
 
 					var a: Array = map[key];
 					if (a) {
 						a.sortOn("y", Array.NUMERIC);
-						//trace(key);
 						for (var j: int = 0; j < a.length; j++) {
 
 							c = a[j];
@@ -375,7 +373,7 @@
 
 
 			/**/
-			var spread: int = blockSize / 7;
+			var spread: int = blockSize / 4;
 			for (row = hero.row - spread; row <= hero.row + spread; row++) {
 				for (col = hero.col - spread; col <= hero.col + spread; col++) {
 					var a: Array = map[row + "_" + col];
