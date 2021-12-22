@@ -12,7 +12,7 @@
 
 	public class Main extends MovieClip {
 
-		var numParticles: int = 400;
+		var numParticles: int = 300;
 		var heroInfluence: Number = 200;
 		var blockSize: int = 50;
 		var runSpeed: Number = 5;
@@ -56,9 +56,7 @@
 			var stringJson: String;
 
 			stringJson = String(e.target.data);
-			trace(stringJson);
 			jsonObj = JSON.parse(stringJson);
-			trace(jsonObj);
 			begin();
 		}
 
@@ -73,7 +71,7 @@
 				while (!found) {
 					for (var j: int = 0; j < arr.length; j++) {
 						var o: Object = arr[j];
-						var minDist: Number = 20;
+						var minDist: Number = manRad * 2;
 						if (getDistance(rndX, rndY, o.x, o.y) < minDist) {
 							rndX = Math.random() * mapW;
 							rndY = Math.random() * mapH;
