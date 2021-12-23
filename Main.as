@@ -152,14 +152,19 @@
 				var list: Object = frameObj.frame;
 				outer: for (var row: int = 0; row < list.h; row++) {
 					for (var col: int = 0; col < list.w; col++) {
-						var pixel: uint = src.getPixel32(list.x + col, list.y + row);
+						var pixel: uint = src.getPixel(list.x + col, list.y + row);
 						if (pixel != 0x000000) {
+							//trace(pixel);
+							if(pixel == 0x78b7dd )//|| pixel == 0xcccccc
+							{
+								pixel = o.color;
+							}
 							var _x: Number = heroPosX + o.x + col;
 							var _y: Number = heroPosY + o.y + row;
 							if (_x + list.w < 0 || _x - list.w > stage.stageWidth || _y + list.h < 0 || _y > stage.stageHeight) {
 								break outer;
 							}
-							bd.setPixel32(_x, _y, pixel);
+							bd.setPixel(_x, _y, pixel);
 						}
 
 
@@ -338,7 +343,7 @@
 
 		function update(e: Event): void {
 			map = {};
-			bd.fillRect(new Rectangle(0, 0, stage.stageWidth, stage.stageHeight), 0xffffff);
+			bd.fillRect(new Rectangle(0, 0, stage.stageWidth, stage.stageHeight), 0x666666);
 			bd.lock();
 			moveHero();
 			//hero.x = mouseX;
@@ -435,6 +440,8 @@
 
 
 			bd.unlock();
+
+			//stage.removeEventListener(Event.ENTER_FRAME, update);
 
 
 		}
